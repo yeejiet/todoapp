@@ -14,8 +14,18 @@ class AlertDialogController {
               onPressed: () {
                 Navigator.of(context).pop();
               },
+              style: ButtonStyle(
+                overlayColor: MaterialStateProperty.resolveWith<Color?>(
+                  (Set<MaterialState> states) {
+                    return Colors.grey.withOpacity(0.1);
+                  },
+                ),
+              ),
               // ignore: prefer_const_constructors
-              child: Text("OK"),
+              child: Text(
+                "OK",
+                style: const TextStyle(color: Colors.blueGrey),
+              ),
             )
           ]
         );

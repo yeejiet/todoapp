@@ -41,7 +41,7 @@ class ManageToDoPage extends StatelessWidget {
               Container(
                 alignment: Alignment.center,
                 child: Text(
-                  crud == CRUD.C ? "Add ToDo" : "Update ToDo",
+                  crud == CRUD.C ? "Add To Do" : "Update To Do",
                   style: const TextStyle(
                     fontSize: 20.0,
                     fontWeight: FontWeight.bold,
@@ -64,6 +64,18 @@ class ManageToDoPage extends StatelessWidget {
               Container(
                 alignment: Alignment.center,
                 child: ElevatedButton(
+                  style: ButtonStyle(
+                    overlayColor: MaterialStateProperty.resolveWith<Color?>(
+                      (Set<MaterialState> states) {
+                        return Colors.grey.withOpacity(0.1);
+                      },
+                    ),
+                    backgroundColor: MaterialStateProperty.resolveWith<Color?>(
+                      (Set<MaterialState> states) {
+                        return Colors.grey.shade100;
+                      },
+                    ),
+                  ),
                   onPressed: () async {
                     if (tTextController.text == "") {
                       alertDialogController.displayAlertDialog(context, crud, 'Title cannot be empty');
@@ -111,7 +123,21 @@ class ManageToDoPage extends StatelessWidget {
                     tTextController.text = "";
                     dTextController.text = "";
                   },
-                  child: Text(crud == CRUD.C ? "Add To Do" : "Update To Do"),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(
+                        crud == CRUD.C ? Icons.add : Icons.edit, 
+                        color: Colors.blueGrey,
+                      ),
+                      const SizedBox(width: 8),  // Adjust the spacing between the icon and the text
+                      Text(
+                        crud == CRUD.C ? "Add To Do" : "Update To Do",
+                        style: const TextStyle(color: Colors.blueGrey),
+                      ),
+                    ],
+                  )
+
                 ),
               )
             ],

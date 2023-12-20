@@ -107,7 +107,7 @@ class ToDoListView extends StatelessWidget {
                                 );
                               }, 
                               icon: const Icon(Icons.edit),
-                              color: Colors.green,
+                              color: Colors.grey,
                             ),
                             IconButton(
                               onPressed: () {
@@ -117,6 +117,14 @@ class ToDoListView extends StatelessWidget {
                               color: Colors.red,
                             ),
                             Checkbox(
+                              fillColor: MaterialStateProperty.resolveWith<Color?>(
+                                (Set<MaterialState> states) {
+                                  if (states.contains(MaterialState.selected)) {
+                                    return Colors.blueGrey;  // Color when the checkbox is selected (checked)
+                                  }
+                                  return null;  // Color when the checkbox is not selected (unchecked)
+                                },
+                              ),
                               key: ValueKey(todo.id),
                               value: todo.isCompleted,
                               onChanged: (value) {
@@ -124,6 +132,7 @@ class ToDoListView extends StatelessWidget {
                                 toDoController.updateToDo(todo);
                               },
                             )
+
                           ],
                         ),
                         onTap: (){

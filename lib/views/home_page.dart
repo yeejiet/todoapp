@@ -31,7 +31,16 @@ class _HomeViewState extends State<HomeView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Flutter ToDo App"),
+        title: const Row(
+          children: [
+            Icon(
+              Icons.access_alarms_sharp,
+              color: Colors.grey,
+            ),  // Replace with the desired icon
+            SizedBox(width: 8),  // Adjust the spacing between the icon and the title
+            Text("Flutter To Do App"),
+          ],
+        ),
       ),
       body: PageView(
         controller: pageController,
@@ -71,14 +80,21 @@ class _HomeViewState extends State<HomeView> {
         },
         items: const [
           BottomNavigationBarItem(
-            icon: Icon(Icons.list),
+            icon: Icon(Icons.list,),
             label: "To Do List",
+            backgroundColor: Colors.grey,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.add),
             label: "Add To Do",
+            backgroundColor: Colors.grey,
           )
         ],
+        selectedItemColor: Colors.blueGrey,  // Color of the selected item
+        unselectedItemColor: Colors.grey,    // Color of the unselected items
+        // Set the label text style
+        selectedLabelStyle: const TextStyle(color: Colors.blueGrey),
+        unselectedLabelStyle: const TextStyle(color: Colors.grey),
       )
     );
   }
